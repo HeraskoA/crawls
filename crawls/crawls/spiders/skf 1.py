@@ -36,7 +36,7 @@ class Dixon(scrapy.Spider):
         item = SkfItem()
         item['ids'] = catalog_ids[row]
         item['catalog_number'] = str(row).strip()
-        item['cad'] = 'none'
+        item['file_urls'] = ''
         return item
 
     def parse_item1(self, response):
@@ -84,7 +84,7 @@ class Dixon(scrapy.Spider):
         item = SkfItem()
         item['ids'] = catalog_ids[response.meta['row']]
         item['catalog_number'] = str(response.meta['row']).strip()
-        item['cad'] = 'http://www.skf.com/cadDownload/' + orderno + zipfile
+        item['file_urls'] = ['http://www.skf.com/cadDownload/' + orderno + zipfile]
         return item
 
 

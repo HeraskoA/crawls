@@ -23,7 +23,8 @@ class BaldorItem(Item):
 class SkfItem(Item):
     ids         = Field()
     catalog_number        = Field()
-    cad         = Field()
+    file_urls = Field()
+    files = Field()
 
 class GatesItem(Item):
     ids         = Field()

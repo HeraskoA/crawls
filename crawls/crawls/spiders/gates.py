@@ -17,6 +17,8 @@ proxy_list = list(proxy.proxy)
 '''
 class Dixon(scrapy.Spider):
     name = "gates"
+    DOWNLOAD_DELAY = 10
+    CONCURRENT_REQUESTS = 1
     '''
     def get_random_proxy(self):
         url = urlopen('https://gimmeproxy.com/api/getProxy?get=true').read()
@@ -34,7 +36,7 @@ class Dixon(scrapy.Spider):
     def request(self, url, meta_row, row):
         callback = lambda response: self.parse_item(response, meta_row)
         errback = lambda failure: self.repeat(failure, url, meta_row, row)
-        return scrapy.Request(url=url, callback=callback, errback=errback, meta={'proxy': '191.252.109.219:8080'})
+        return scrapy.Request(url=url, callback=callback, errback=errback, meta={'proxy': '221.133.44.142:8080'})
 
     def repeat(self, failure, url, meta_row, row):
         return self.request(url, meta_row, row)

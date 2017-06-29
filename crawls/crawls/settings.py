@@ -53,12 +53,15 @@ ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {
 'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 1,
 }
+"""
+DOWNLOAD_DELAY = 10
 
-DOWNLOAD_DELAY = 6
 
 CONCURRENT_REQUESTS = 1
+"""
 
-
+ITEM_PIPELINES = {'scrapy.pipelines.files.FilesPipeline': 1}
+FILES_STORE = 'files'
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
