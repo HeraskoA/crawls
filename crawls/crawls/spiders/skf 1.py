@@ -57,7 +57,7 @@ class Dixon(scrapy.Spider):
             return self.error(meta_row)
     	prj_path = response.xpath('//*').re(r'{"prjPath":"(.+)","fixName')[0]
     	productid = response.xpath('//*').re(r'"fixValue":"(.+)"')[0]
-        fix_name = response.xpath('//*').re(r'"fixName":"(.+)"')[0]
+        fix_name = response.xpath('//*').re(r'"fixName":"(.+)","fixValue"')[0]
     	part = '{' + prj_path + '},{' + fix_name + '=' + productid + '}'
     	form_data = {}
     	form_data['cgiaction'] = 'download'
