@@ -5,6 +5,9 @@ from crawls.items import GatesItem
 import random, re
 import json
 from urllib import urlopen
+import urllib
+import urllib2
+import shutil
  
 
 out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/gates.csv", sep=',')
@@ -26,7 +29,12 @@ class Dixon(scrapy.Spider):
     '''
     def get_proxy(self, change=0):
         self.index = self.index + 1 if change else self.index
-        return proxy_list[self.index]
+        try:
+            proxy = proxy_list[self.index]
+        except Exception:
+            raise CloseSpider('empty poxy list')
+        else:
+            return proxy
 
     def start_requests(self):
         for row in out['catalog_number']:
@@ -39,7 +47,7 @@ class Dixon(scrapy.Spider):
     def request(self, url, meta_row, row, proxy):
         callback = lambda response: self.parse_item(response, meta_row, row, url)
         errback = lambda failure: self.repeat(failure, url, meta_row, row)
-        return scrapy.Request(url=url, callback=callback, errback=errback, meta={'proxy': proxy})
+        return scrapy.Request(url=url, callback=callback, errback=errback, meta={'proxy': proxy, 'download_timeout': 20}, dont_filter=True)
 
     def repeat(self, failure, url, meta_row, row):
         proxy = self.get_proxy(1)
@@ -58,10 +66,15 @@ class Dixon(scrapy.Spider):
             item['catalog_number'] = str(meta_row).strip()
             try:
                 url = response.xpath('//*').re(r'"url":"(.+)","productID"')[0]
+                req = urllib2.Request('http:' + url)
+                resp = urllib2.urlopen(req)
+                file_name = '%s.zip' % urllib.quote_plus(str(meta_row).strip())
+                with open('gates_downoad/' + file_name, 'wb') as file:
+                    shutil.copyfileobj(resp.fp, file)
             except Exception:
-                item['cad'] = 'none'
+                item['cad'] = ''
             else:
-                item['cad'] = 'http:' + url
+                item['cad'] = file_name
             print self.index
             return item
 

@@ -12,7 +12,7 @@ ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))
 
 
-class Dixon(scrapy.Spider):
+class Baldor(scrapy.Spider):
     name = "baldor"
 
     def start_requests(self):

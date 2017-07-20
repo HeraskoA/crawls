@@ -23,8 +23,8 @@ class BaldorItem(Item):
 class SkfItem(Item):
     ids         = Field()
     catalog_number        = Field()
-    file_urls = Field()
-    files = Field()
+    file_name = Field()
+
 
 class GatesItem(Item):
     ids         = Field()
@@ -45,3 +45,21 @@ class Baldor2Item(Item):
     catalog_number        = Field()
     name         = Field()
     url         = Field()
+
+class WegItem(Item):
+    ids         = Field()
+    catalog_number        = Field()
+    descr         = Field()
+    add_descr       = Field()
+    img_url = Field()
+
+class WegelectricItem(Item):
+    ids         = Field()
+    catalog_number        = Field()
+    add_descr       = Field()
+    img_url = Field()
+
+class PatriotItem(Item):
+    ids         = Field()
+    catalog_number        = Field()
+    descr = Field()    

@@ -11,20 +11,11 @@ out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/gate
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))
-'''
-proxy = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/proxy.csv", sep=',')
-proxy_list = list(proxy.proxy)
-'''
+
 class Dixon(scrapy.Spider):
     name = "gates"
     DOWNLOAD_DELAY = 10
     CONCURRENT_REQUESTS = 1
-    '''
-    def get_random_proxy(self):
-        url = urlopen('https://gimmeproxy.com/api/getProxy?get=true').read()
-        url = json.loads(url)
-        return re.findall(r'//(.+)', url['curl'])[0]
-    '''
 
     def start_requests(self):
         for row in out['catalog_number']:
