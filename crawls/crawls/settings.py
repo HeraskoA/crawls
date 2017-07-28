@@ -56,9 +56,9 @@ DOWNLOADER_MIDDLEWARES = {
 """
 
 DOWNLOAD_DELAY = 10
-"""
-CONCURRENT_REQUESTS = 1
 
+CONCURRENT_REQUESTS = 1
+"""
 
 """
 ITEM_PIPELINES = {'scrapy.pipelines.files.FilesPipeline': 1}
@@ -139,4 +139,15 @@ FILES_STORE = 'files'
 #35
 #36
 #37
-#
+#38
+#39
+#40
+#41
+#42
+#43
+#44
+#45
+#46
+#47
+#48
+#49

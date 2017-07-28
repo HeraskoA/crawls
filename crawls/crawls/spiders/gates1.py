@@ -10,7 +10,7 @@ import urllib2
 import shutil
  
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/gates.csv", sep=',')
+out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/gates-bad.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))

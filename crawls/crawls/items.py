@@ -62,4 +62,7 @@ class WegelectricItem(Item):
 class PatriotItem(Item):
     ids         = Field()
     catalog_number        = Field()
-    descr = Field()    
+    descr = Field()
+
+class TestGatesItem(Item):
+    catalog_number  = Field()
