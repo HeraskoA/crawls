@@ -66,3 +66,16 @@ class PatriotItem(Item):
 
 class TestGatesItem(Item):
     catalog_number  = Field()
+
+class RegalptsDescrItem(Item):
+    ids         = Field()
+    brand        = Field()
+    catalog_number = Field()
+    descr = Field()
+
+class RegalptsDocumentsItem(Item):
+    ids         = Field()
+    brand        = Field()
+    catalog_number = Field()
+    name = Field()
+    url = Field()

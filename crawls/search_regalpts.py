@@ -15,7 +15,7 @@ values = {
 '__VIEWSTATEGENERATOR':'CC83E274',
 '__EVENTVALIDATION':'/wEWBgLp7P2qAgLjqMbGAQKW/Y24DgLJ/9mgDgKnipiBAQLyy5/lAvf1dl3csxmQIa+YgupvyhsnBXAM',
 'ctl00_Master_ContentPlaceHolder1_MenuPanel_ClientState':'{"expandedItems":["0"],"logEntries":[],"selectedItems":[]}',
-'ctl00$Master$ContentPlaceHolder1$ContentPlaceHolderMain$TextBoxPartNumber':'asafafsf',
+'ctl00$Master$ContentPlaceHolder1$ContentPlaceHolderMain$TextBoxPartNumber':'SF-22T',
 'ctl00$Master$ContentPlaceHolder1$ContentPlaceHolderMain$ButtonPartSearch':'SEARCH >',
 'ctl00_Master_ContentPlaceHolder1_ContentPlaceHolderMain_RadTreeViewProductLine_ClientState':'{"expandedNodes":[],"collapsedNodes":[],"logEntries":[],"selectedNodes":[],"checkedNodes":[],"scrollPosition":0}',
 'ctl00_Master_ContentPlaceHolder1_ContentPlaceHolderMain_RadWindowOpenPDF_ClientState':'',
