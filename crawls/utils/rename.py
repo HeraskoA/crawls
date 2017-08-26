@@ -1,9 +1,9 @@
 import os
-path = '/data/work/virtualenvs/scrapy/crawls/regalpts_unzip'
+path = 'regalpts_/unzip1'
 files = os.listdir(path)
 
 for file in files:
-    os.rename(os.path.join(path, file), os.path.join(path, 'regalpts_' + os.path.splitext(os.path.basename(file))[0] +'.IGS'))
+    os.rename(os.path.join(path, file), os.path.join(path, 'regalpts_beloit_' + os.path.splitext(os.path.basename(file))[0] +'.IGS'))
 
 """
 1 compl

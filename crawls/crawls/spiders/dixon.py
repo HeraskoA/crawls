@@ -3,7 +3,7 @@ import pandas as pd
 import scrapy
 from crawls.items import DixonItem
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/dixon_additional_descr.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/dixon_additional_descr.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))

@@ -5,12 +5,12 @@ import urllib
 from crawls.items import PatriotItem
  
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/patriot.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/patriot.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))
 
-proxy = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/proxy.csv", sep=',')
+proxy = pd.read_csv("crawls/spiders/data/proxy.csv", sep=',')
 proxy_list = list(proxy.proxy)
 
 class Statesupply(scrapy.Spider):

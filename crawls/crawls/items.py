@@ -79,3 +79,50 @@ class RegalptsDocumentsItem(Item):
     catalog_number = Field()
     name = Field()
     url = Field()
+
+class RegalptsItem(Item):
+    ids = Field()
+    brand = Field()
+    catalog_number = Field()
+    cad = Field()
+
+class RegalptsImageItem(Item):
+    ids = Field()
+    brand = Field()
+    catalog_number = Field()
+    url = Field()
+
+class McrItem(Item):
+    ids = Field()
+    catalog_number = Field()
+    img_url = Field()
+    doc_name = Field()
+    doc_url = Field()
+    add_descr = Field()
+
+class ToshibaItem(Item):
+    ids = Field()
+    catalog_number = Field()
+    image = Field()
+    description = Field()
+    specifications = Field()
+    ids = Field()
+
+class BaldorDodgeItem(Item):
+    ids = Field()
+    catalog_number = Field()
+    description = Field()
+    img = Field()
+    specs = Field()
+    doc_name = Field()
+    doc_url = Field()
+
+class CrownItem(Item):
+    ids = Field()
+    catalog_number = Field()
+    description = Field()
+    sku = Field()
+    img = Field()
+    additional_description = Field()
+    name = Field()
+    url = Field()

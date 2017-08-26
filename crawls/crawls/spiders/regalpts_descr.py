@@ -11,9 +11,9 @@ import re
 import zipfile
 import os
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/Regal_Beloit_aux_descriptions.csv", sep=',')
-catalog = list(out.catalog_number)
-brand = list(out.Brand)
+out = pd.read_csv("crawls/spiders/data/Regal_Beloit_aux_descriptions.csv", sep=',')
+catalog = [str(item).strip() for item in list(out.catalog_number)]
+brand = [item.strip() for item in list(out.Brand)]
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))
 catalog_brand = dict(zip(catalog, brand))
@@ -26,11 +26,10 @@ class Regalpts(scrapy.Spider):
     name = "regalpts_descr"
 
     def start_requests(self):
-        for row in out['catalog_number']:
+        for row in catalog:
             yield self.request(row)
 
-    def request(self, meta_row):
-        row = str(meta_row).strip()
+    def request(self, row):
         url = 'http://edge.regalpts.com/EDGE/CAD/Default.aspx?SS=yes'
         formdata = {
         '__EVENTTARGET':'',
@@ -50,41 +49,41 @@ class Regalpts(scrapy.Spider):
         }
         return FormRequest(url=url, 
                             callback=self.parse_item,
-                            errback=lambda failure: self.request(meta_row),
+                            errback=lambda failure: self.request(row),
                             dont_filter=True,
                             formdata=formdata,
-                            meta={'meta_row': meta_row}
+                            meta={'row': row}
                             )
 
-    def create_item(self, meta_row, table):
+    def create_item(self, row, table):
         item = RegalptsDescrItem()
-        item['ids'] = catalog_ids[meta_row]
-        item['brand'] = catalog_brand[meta_row].strip()
-        item['catalog_number'] = str(meta_row).strip()
+        item['ids'] = catalog_ids[row]
+        item['brand'] = catalog_brand[row]
+        item['catalog_number'] = row
         item['descr'] = table
         return item
 
     def parse_item(self, response):
-        meta_row = response.meta['meta_row']
+        row = response.meta['row']
         print response.url
         if 'Group' in response.url:
-            expression = '//a[text()="%s"]/@href' % str(meta_row).strip()
+            expression = '//a[text()="%s"]/@href' % row
             url = response.xpath(expression).extract_first()
             if url:
                 return scrapy.Request(url=url,
                                     callback=self.extract_table,
-                                    errback=lambda failure: self.request(meta_row),
+                                    errback=lambda failure: self.request(row),
                                     dont_filter=True,
-                                    meta={'meta_row': meta_row}
+                                    meta={'row': row}
                                     )
         elif 'PartID' in response.url:
             return self.extract_table(response)
         else:
-            return self.create_item(meta_row, '')
+            return self.create_item(row, '')
 
     def extract_table(self, response):
-        meta_row = response.meta['meta_row']
+        row = response.meta['row']
         table = response.xpath('//*[@id="ctl00_Master_ContentPlaceHolder1_ContentPlaceHolderMain_RadGridPartDetailInfo_ctl00"]').extract_first()
-        return self.create_item(meta_row, table)
+        return self.create_item(row, table)
 
 

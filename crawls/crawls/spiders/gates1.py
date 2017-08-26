@@ -10,29 +10,24 @@ import urllib2
 import shutil
  
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/gates-bad.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/gates_full.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))
 
-proxy = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/proxy.csv", sep=',')
+proxy = pd.read_csv("crawls/spiders/data/proxy.csv", sep=',')
 proxy_list = list(proxy.proxy)
 
 class Dixon(scrapy.Spider):
     name = "gates1"
     index = 0
-    '''
-    def get_random_proxy(self):
-        url = urlopen('https://gimmeproxy.com/api/getProxy?get=true').read()
-        url = json.loads(url)
-        return re.findall(r'//(.+)', url['curl'])[0]
-    '''
+
     def get_proxy(self, change=0):
         self.index = self.index + 1 if change else self.index
         try:
             proxy = proxy_list[self.index]
         except Exception:
-            raise CloseSpider('empty poxy list')
+            raise scrapy.exceptions.CloseSpider('empty poxy list')
         else:
             return proxy
 
@@ -47,7 +42,7 @@ class Dixon(scrapy.Spider):
     def request(self, url, meta_row, row, proxy):
         callback = lambda response: self.parse_item(response, meta_row, row, url)
         errback = lambda failure: self.repeat(failure, url, meta_row, row)
-        return scrapy.Request(url=url, callback=callback, errback=errback, meta={'proxy': proxy, 'download_timeout': 20}, dont_filter=True)
+        return scrapy.Request(url=url, callback=callback, errback=errback, meta={ 'download_timeout': 20}, dont_filter=True)
 
     def repeat(self, failure, url, meta_row, row):
         proxy = self.get_proxy(1)

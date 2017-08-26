@@ -11,7 +11,7 @@ import re
 import zipfile
 import os
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/Regal_Beloit_Documents.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/Regal_Beloit_Documents.csv", sep=',')
 catalog = [str(item).strip() for item in list(out.catalog_number)]
 brand = [item.strip() for item in list(out.Brand)]
 ids = list(out.id)
@@ -36,7 +36,7 @@ class Regalpts(scrapy.Spider):
         '__EVENTARGUMENT':'',
         '__VIEWSTATE': viewstage,
         '__VIEWSTATEGENERATOR':'CC83E274',
-        '__EVENTVALIDATION':'/wEWBgK0w53LDQLjqMbGAQKW/Y24DgLJ/9mgDgKnipiBAQLyy5/lAnAMSE4GnkVeEYUcKuBELFKIEU1Z',
+        '__EVENTVALIDATION':'/wEWBgL4+JvjBALjqMbGAQKW/Y24DgLJ/9mgDgKnipiBAQLyy5/lAuF2uu8b/BgziUqSvX9FGHOhGpdW',
         'ctl00_Master_ContentPlaceHolder1_MenuPanel_ClientState':'{"expandedItems":["0"],"logEntries":[],"selectedItems":[]}',
         'ctl00$Master$ContentPlaceHolder1$ContentPlaceHolderMain$TextBoxPartNumber': row,
         'ctl00$Master$ContentPlaceHolder1$ContentPlaceHolderMain$ButtonPartSearch':'SEARCH >',
