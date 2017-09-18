@@ -52,6 +52,7 @@ ROBOTSTXT_OBEY = True
 
 DOWNLOADER_MIDDLEWARES = {
 'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 1,
+'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 }
 """
 

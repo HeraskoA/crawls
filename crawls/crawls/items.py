@@ -126,3 +126,14 @@ class CrownItem(Item):
     additional_description = Field()
     name = Field()
     url = Field()
+
+class HotLineItem(Item):
+    name = Field()
+    price = Field()
+    img = Field()
+
+class RexnordItem(Item):
+    ids = Field()
+    catalog_number = Field()
+    name = Field()
+    url = Field()
