@@ -7,7 +7,7 @@ import urllib
 from scrapy.http import FormRequest
 import re
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/skf_bearings.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/skf_bearings.csv", sep=',')
 out['cad'] = ''
 catalog = list(out.catalog_number)
 ids = list(out.id)

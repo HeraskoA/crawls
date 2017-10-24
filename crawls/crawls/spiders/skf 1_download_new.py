@@ -9,7 +9,7 @@ from scrapy.http import FormRequest
 import re
 import shutil
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/skf_seals.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/skf_seals.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))

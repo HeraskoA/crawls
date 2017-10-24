@@ -6,7 +6,7 @@ from scrapy.http import FormRequest
 import yaml
 import re
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/baldor.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/baldor.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))

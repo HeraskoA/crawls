@@ -7,7 +7,7 @@ import yaml
 import re
 
 
-out = pd.read_csv("/data/work/virtualenvs/scrapy/crawls/crawls/spiders/data/baldor1.csv", sep=',')
+out = pd.read_csv("crawls/spiders/data/baldor1.csv", sep=',')
 catalog = list(out.catalog_number)
 ids = list(out.id)
 catalog_ids = dict(zip(catalog, ids))
