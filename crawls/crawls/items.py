@@ -137,3 +137,9 @@ class RexnordItem(Item):
     catalog_number = Field()
     name = Field()
     url = Field()
+
+class EItem(Item):
+    ids = Field()
+    description = Field()
+    item_code = Field()
+    ordering_number = Field()
